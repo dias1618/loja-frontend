@@ -1,20 +1,10 @@
 version: '3.8'
 
 services:
-  frontend:
+  angular-app:
     build:
       context: .
-      # Use uma das opções abaixo:
-      dockerfile: Dockerfile        # Versão padrão com zone.js atualizado
-      # dockerfile: Dockerfile.legacy  # Versão com --legacy-peer-deps
-    container_name: loja-frontend
+      dockerfile: Dockerfile
     ports:
       - "4210:80"
     restart: unless-stopped
-    networks:
-      - loja-network
-
-networks:
-  loja-network:
-    name: loja-network
-    driver: bridge 
