@@ -15,7 +15,7 @@ RUN npm cache clean --force && \
 COPY . .
 
 # Gera o build de produção com otimizações
-RUN npm run build -- --configuration production --aot --build-optimizer --optimization
+RUN npm run build -- --configuration production
 
 # Estágio de produção
 FROM nginx:alpine
