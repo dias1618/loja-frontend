@@ -4,7 +4,9 @@ services:
   frontend:
     build:
       context: .
-      dockerfile: Dockerfile
+      # Use uma das opções abaixo:
+      dockerfile: Dockerfile        # Versão padrão com zone.js atualizado
+      # dockerfile: Dockerfile.legacy  # Versão com --legacy-peer-deps
     container_name: loja-frontend
     ports:
       - "4210:80"
