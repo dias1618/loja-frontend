@@ -85,10 +85,10 @@
             },
             "development": {
               "buildTarget": "loja-frontend:build:development"
-            },
-            "options": {
-              "proxyConfig": "proxy.conf.json"
             }
+          },
+          "options": {
+            "proxyConfig": "proxy.conf.json"
           },
           "defaultConfiguration": "development"
         },
