@@ -41,7 +41,7 @@ RUN rm -rf /etc/nginx/conf.d/default.conf.default
 # Otimiza o nginx para melhor performance e inclui mime.types
 RUN echo "worker_processes auto;" > /etc/nginx/nginx.conf && \
     echo "events { worker_connections 1024; }" >> /etc/nginx/nginx.conf && \
-    echo "http { include /etc/nginx/mime.types; include /etc/nginx/conf.d/*.conf; }" >> /etc/nginx/nginx.conf
+    echo "http { include /etc/nginx/mime.types; types { text/javascript js; } include /etc/nginx/conf.d/*.conf; }" >> /etc/nginx/nginx.conf
 
 # Expõe a porta 80
 EXPOSE 80
