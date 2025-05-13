@@ -14,6 +14,12 @@ RUN npm cache clean --force && \
 # Copia o código fonte
 COPY . .
 
+# Cria diretório de fontes
+RUN mkdir -p src/assets/fonts
+
+# Download da fonte Inter
+RUN wget -O src/assets/fonts/Inter-roman.var.woff2 https://rsms.me/inter/font-files/Inter-roman.var.woff2
+
 # Gera o build de produção com otimizações
 RUN npm run build -- --configuration production
 
@@ -22,6 +28,9 @@ FROM nginx:alpine
 
 # Copia os arquivos estáticos do build para o nginx
 COPY --from=build /app/dist/loja-frontend/browser /usr/share/nginx/html
+
+# Garante que o diretório de assets existe
+RUN mkdir -p /usr/share/nginx/html/assets/fonts
 
 # Copia a configuração personalizada do nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
