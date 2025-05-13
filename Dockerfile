@@ -1,0 +1,32 @@
+# Estágio de build
+FROM node:20-alpine AS build
+
+# Define o diretório de trabalho
+WORKDIR /app
+
+# Copia os arquivos de configuração
+COPY package*.json ./
+
+# Instala as dependências
+RUN npm install
+
+# Copia o código fonte
+COPY . .
+
+# Gera o build de produção
+RUN npm run build
+
+# Estágio de produção
+FROM nginx:alpine
+
+# Copia os arquivos estáticos do build para o nginx
+COPY --from=build /app/dist/loja-frontend/browser /usr/share/nginx/html
+
+# Copia a configuração personalizada do nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expõe a porta 80
+EXPOSE 80
+
+# Comando para iniciar o nginx
+CMD ["nginx", "-g", "daemon off;"] 

@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "http://147.93.8.242:8000",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+} 
